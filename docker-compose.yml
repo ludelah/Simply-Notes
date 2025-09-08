@@ -1,0 +1,16 @@
+# docker-compose.yml (project root)
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: notesdb
+      POSTGRES_USER: notes_user
+      POSTGRES_PASSWORD: notes_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
