@@ -3,9 +3,11 @@ package com.ludelah.notes.controller;
 import com.ludelah.notes.dto.NoteDto;
 import com.ludelah.notes.model.Note;
 import com.ludelah.notes.service.NoteService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -51,9 +53,11 @@ public class NotesController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> deleteNote(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.ok(Map.of("status", "deleted"));
     }
+
 
     @PostMapping("/{id}/archive")
     public NoteDto archive(@PathVariable Long id) {

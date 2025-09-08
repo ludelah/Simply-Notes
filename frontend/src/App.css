@@ -1,0 +1,25 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notes{
+  padding: 20px;
+}
+
+.deleteNote{
+  padding: 5px;
+  padding-top: 3px;
+  aspect-ratio: 1/1;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  border-radius: 100%;
+
+  display: inline;
+}
+
+li {
+  display: inline;
+}
