@@ -1,16 +1,16 @@
 #!/bin/bash
-set -e  # exit if error
+set -e
 
-echo "🚀 Starting database..."
-docker-compose up -d db  # adjust service name if needed
+echo "Starting database..."
+sudo docker-compose up -d db  # adjust service name if needed
 
-echo "📦 Starting backend..."
+echo "Starting backend..."
 cd backend
 ./mvnw spring-boot:run &
 BACK_PID=$!
 cd ..
 
-echo "🌐 Starting frontend..."
+echo "Starting frontend..."
 cd frontend
 npm install
 npm run dev &
