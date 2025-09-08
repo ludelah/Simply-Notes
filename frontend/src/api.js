@@ -1,9 +1,8 @@
-// Wrapper for my api
 const BASE = "http://localhost:8080/api";
 
-// Ensure the token exists
 let token = localStorage.getItem("userToken");
 if (!token) {
+  // site must be in HTTPS protocol for this to work
   token = crypto.randomUUID();
   localStorage.setItem("userToken", token);
 }

@@ -1,12 +1,12 @@
-# docker-compose.yml (project root)
+# docker-compose.yml
 version: '3.8'
 services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_DB: notesdb
-      POSTGRES_USER: notes_user
-      POSTGRES_PASSWORD: notes_pass
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
     ports:
       - "5432:5432"
     volumes:
