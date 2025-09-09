@@ -19,8 +19,8 @@ public class Note {
     This makes the app a bit more insecure, we could steal a token and spoof it to get other people's notes.
     But it makes the app more efficient and faster to develop for the moment.
     NOT TO BE USED IN PROD!!! */
-    @Column(nullable = false)
-    private String user_token;
+    @Column(name = "user_token", nullable = false)
+    private String userToken;
 
     @Column(nullable = false)
     private String title;
@@ -32,7 +32,8 @@ public class Note {
     private boolean archived = false;
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Instant created_at = Instant.now();
+    private Instant createdAt = Instant.now();
 
-    private Instant updated_at;
+    @Column(name = "updated_at")
+    private Instant updatedAt;
 }

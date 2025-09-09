@@ -18,16 +18,16 @@ public class NoteService {
     }
 
     public List<Note> listActive(String token) {
-        return repo.findActiveNotes(token);
+        return repo.findByUserTokenAndArchivedFalse(token);
     }
 
     public List<Note> listArchived(String token) {
-        return repo.findArchivedNotes(token);
+        return repo.findByUserTokenAndArchivedTrue(token);
     }
 
 
     public Note create(Note note, String token) {
-        note.setUser_token(token);
+        note.setUserToken(token);
         return repo.save(note);
     }
 
@@ -38,14 +38,14 @@ public class NoteService {
     public Note update(Note note, String user) {
         Note noteToUpdate = repo.findById(note.getId()).orElseThrow(); // TODO: Create exceptions
 
-        if (!noteToUpdate.getUser_token().equals(user))
+        if (!noteToUpdate.getUserToken().equals(user))
         {
             throw new RuntimeException("Not authorized to update this note");
         }
 
         noteToUpdate.setTitle(note.getTitle());
         noteToUpdate.setContent(note.getContent());
-        noteToUpdate.setUpdated_at(Instant.now());
+        noteToUpdate.setUpdatedAt(Instant.now());
 
         return repo.save(noteToUpdate);
 
@@ -58,7 +58,7 @@ public class NoteService {
     public Note setArchived(Long id, boolean archived) {
         Note note = repo.findById(id).orElseThrow();
         note.setArchived(archived);
-        note.setUpdated_at(java.time.Instant.now());
+        note.setUpdatedAt(java.time.Instant.now());
         return repo.save(note);
     }
 }

@@ -7,8 +7,7 @@ ul {
 .notesContainer{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 450px;
-  padding: 20px;
+  width: 100%;
 }
 
 @media (max-width: 1200px) {
@@ -48,7 +47,7 @@ ul {
 }
 
 #titleInput, .noteTitle{
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin: 5px;
   padding: 5px;
 }

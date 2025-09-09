@@ -36,7 +36,29 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
   text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 50px 0;
+  background-color: #747bff;
 }
+textarea {
+  resize: none;
+  max-width: 100%;
+  caret-color: black;
+}
+#tutorial-button {
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  text-align: center;
+  position: absolute;
+  align-self: flex-end;
+  margin: 20px;
+}
+#close-tutorial {
+  background-color: #242424;
+  color: whitesmoke;
+}
+
 
 button {
   border-radius: 8px;
