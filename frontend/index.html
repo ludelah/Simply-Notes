@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes.io</title>
+    <link rel="icon" type="image/png" href="/public/favicon.png">
+  </head>
+  <body>
+    <div id="root"></div>
+    <h1>notes.io</h1>
+    <button id="tutorial-button"><strong>?</strong></button>
+    
+    <script type="module" src="/src/main.jsx"></script>
+    <script src="/tutorial.js"></script>
+
+    <div id="tutorial-popup" style="display:none; position:fixed; top:80px; right:40px; background:white; color:#333; border:1px solid #888; border-radius:8px; padding:20px; z-index:1000; max-width:320px; box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+      <strong>How to use:</strong>
+      <ul style="padding-left:18px">
+        <li><b>Add:</b> Click the "Add" button to add a note with the contents you put in</li>
+        <li><b>Delete:</b> Click the X button to remove a note.</li>
+        <li><b>Archive:</b> Click the ↓ button to archive the note, ↑ to unarchive.</li>
+        <li><b>Edit:</b> Click inside a note to edit it's title and contents. Changes are saved when you click away.</li>
+        <li><b>Switch views:</b> Use the "Show Archived Notes" button to view your archived notes.</li>
+      </ul>
+      <button id="close-tutorial" style="margin-top:10px">Close</button>
+    </div>
+  </body>
+</html>

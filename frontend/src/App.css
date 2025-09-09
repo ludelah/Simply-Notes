@@ -1,0 +1,116 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notesContainer{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .notesContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+@media (max-width: 800px) {
+  .notesContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.newNote, .noteContainer, .archivedNote {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  background-color: aliceblue;
+  margin: 10px;
+  justify-self: center;
+}
+
+.noteContainer, .archivedNote {
+  background-color: aliceblue;
+  width: 90%;
+  height: 90%;
+}
+.archivedNote, .archivedNote > div > textarea {
+  background-color: rgb(238, 220, 163);
+}
+
+
+.newNote * {
+  margin: 5px
+}
+
+#titleInput, .noteTitle{
+  font-size: 1.4rem;
+  margin: 5px;
+  padding: 5px;
+}
+.noteTitle{
+  height: auto;
+  background-color: aliceblue;
+  border: 0;
+}
+
+
+#contentInput, .noteContent {
+  aspect-ratio: 1/1;
+  font-size: large;
+  overflow-wrap: break-word;
+}.noteContent {
+  background-color: aliceblue;
+  border: 0;
+  margin: 10px;
+}
+
+.buttonNote{
+  padding: 5px;
+  padding-top: 3px;
+  aspect-ratio: 1/1;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin: 10px;
+  background-color: white;
+  color: rgb(112, 173, 226);
+  display: inline;
+  position: absolute;
+}
+.buttonNote:hover {
+  border-color: red;
+}
+
+#archive {
+  top: 40px;
+}
+#archive:hover{
+  border-color: blue;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.note {
+  height: 100%;
+}
+
+.noteContent {
+  width: 90%;
+  display: inline-block;
+  overflow-wrap: break-word;
+  aspect-ratio: 1/1;
+  white-space: normal;
+}
+
+
+
