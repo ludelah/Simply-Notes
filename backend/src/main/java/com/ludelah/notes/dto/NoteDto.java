@@ -7,10 +7,10 @@ public class NoteDto {
     public String content;
     public boolean archived;
 
-    public NoteDto(Long id, String title, String content) {
+    public NoteDto(Long id, String title, String content, boolean isArchived) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.archived = false;
+        this.archived = isArchived;
     }
 }

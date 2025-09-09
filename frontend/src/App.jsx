@@ -6,11 +6,16 @@ export default function App() {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [showArchived, setShowArchived] = useState(false);
 
   // Load notes on start
   useEffect(() => {
+    if(showArchived){
+      api.getArchive().then(setNotes);
+    } else {
     api.getNotes().then(setNotes);
-  }, []);
+    }
+  }, [showArchived]);
 
   const addNote = async () => {
     const newNote = await api.addNote({ title, content });
@@ -24,48 +29,109 @@ export default function App() {
     setNotes(notes.filter((n) => n.id !== id));
   };
 
-  return (
-    <div className="p-4 max-w-xl mx-auto grid notes">
+  const archiveNote = async (id) => {
+    await api.archiveNote(id);
+    setNotes(notes.filter((n) => n.id !== id));
+  };
 
-      <div className="mb-4">
+
+
+  return (
+    <ul className="notesContainer">
+
+      <div className="newNote">
         <input
-          className="border p-2 mr-2"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          id="titleInput"
+          name="titleInput"
         />
-        <input
-          className="border p-2 mr-2"
-          placeholder="Content"
+        <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          id="contentInput"
+          name="contentInput"
         />
         <button
-          className="bg-blue-500 text-white px-4 py-2 newNote"
+          className="newNote"
           onClick={addNote}
         >
           Add
         </button>
+        
+        <button
+          id="archiveButton"
+          onClick={() => setShowArchived((prev) => !prev)}
+        >
+          {showArchived ? "Show Active Notes" : "Show Archived Notes"}
+        </button>
+
       </div>
 
-      <ul>
         {notes.map((note) => (
           <li
             key={note.id}
-            className="border-b py-2 justify-between items-center"
+            className={`${note.archived ? "archivedNote" : "noteContainer"}`}
           >
-            <div>
-              <strong>{note.title}</strong>: {note.content}
+            <div class="note">
+              
+              <textarea 
+              rows="1"
+              className="noteTitle"
+              disabled={note.archived}
+              onChange={e => {
+                const newNotes = [...notes];
+                newNotes[idx] = {...note, title: e.target.value};
+                setNotes(newNotes);
+              }}
+              onBlur={e => {
+                api.updateNote(note.id, {...note, title: e.target.value, content: note.content })
+              }}
+              >{note.title}
+              </textarea>
+              
+              <textarea 
+              class="noteContent"
+              disabled={note.archived}
+              onChange={e => {
+                const newNotes = [...notes];
+                newNotes[idx] = {...note, content: e.target.value };
+                setNotes(newNotes);
+              }}
+              onBlur={e => {
+                api.updateNote(note.id, {...note, title: note.title, content: e.target.value });
+              }}
+              >{note.content}
+              </textarea>
             </div>
+
             <button
-              className="bg-red-500 text-white px-2 py-1 deleteNote"
+              className="buttonNote"
+              id="delete"
               onClick={() => deleteNote(note.id)}
             >
               X
             </button>
+
+            <button
+              className="buttonNote"
+              id="archive"
+              onClick={async () => {
+                if (note.archived) {
+                  await api.unarchiveNote(note.id);
+                  setNotes(notes.filter((n) => n.id !== note.id));
+                } else {
+                  archiveNote(note.id);
+                }
+              }}
+            >
+              {note.archived ? "↑" : "↓"}
+            </button>
+            
           </li>
         ))}
-      </ul>
-    </div>
+      
+    </ul>
   );
 }

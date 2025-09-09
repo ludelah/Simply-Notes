@@ -20,6 +20,7 @@ async function request(path, opts = {}) {
 
 export const api = {
   getNotes: () => request("/notes/active"),
+  getArchive: () => request("/notes/archived"),
   addNote: (note) =>
     request("/notes/active", {
       method: "POST",
@@ -27,4 +28,13 @@ export const api = {
     }),
   deleteNote: (id) =>
     request(`/notes/${id}`, { method: "DELETE" }),
+  archiveNote: (id) =>
+    request(`/notes/${id}/archive`, { method: "POST" }),
+  unarchiveNote: (id) =>
+    request(`/notes/${id}/unarchive`, { method: "POST"} ),
+  updateNote: (id, note) =>
+    request(`/notes/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(note)
+    })
 };

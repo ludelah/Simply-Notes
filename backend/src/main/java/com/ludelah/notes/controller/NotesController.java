@@ -16,7 +16,7 @@ public class NotesController {
     private final NoteService service;
 
     private NoteDto toDto(Note n) {
-        return new NoteDto(n.getId(), n.getTitle(), n.getContent());
+        return new NoteDto(n.getId(), n.getTitle(), n.getContent(), n.isArchived());
     }
 
     private Note fromDto(NoteDto d) {
